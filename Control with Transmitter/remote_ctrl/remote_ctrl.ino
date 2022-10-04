@@ -104,7 +104,14 @@ void calculate(int angle, int throttle, int spot_throttle, int swA, int swC){
     }
   }
   
-  if (swC==3){
+  if (swC==1){
+    servo_values[0]=servo_values[1]=servo_values[2]=servo_values[3]=servo_values[4]=servo_values[5]=0;
+    if (swA==2){
+      motor_values[0]=motor_values[1]=motor_values[2]=motor_values[3]=motor_values[4]=motor_values[5]=-spot_throttle*2;
+    }
+  }
+
+  else if (swC==3){
     servo_values[6]=1;
     float spot_angle = atan2(LENGTH, WIDTH/2)*180/PI;
     servo_values[0]=servo_values[5] = 90+spot_angle;
@@ -168,7 +175,7 @@ void loop() {
   ch6value = read_switches(CH6);
   
   ch1value = map(ch1value, 1100, 1900, -45, 45);
-  ch2value = map(ch2value, 1100, 1900, -75, 75);
+  ch2value = map(ch2value, 1100, 1900, -100, 100);
   ch3value = map(ch3value, 1100, 1900, -100, 100);
   ch4value = map(ch4value, 1100, 1900, -100, 100);
 
